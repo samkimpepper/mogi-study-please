@@ -1,0 +1,12 @@
+# TIL
+
+매일 공부한 내용을 날짜별로 한 줄씩 기록한다.
+
+## 2026-05-20
+
+- [x] Git `checkout`과 `switch`의 차이
+- [x] 로컬 RAG 검색 방식
+
+## 2026-05-21
+
+- [ ] https://news.hada.io/topic?id=18649
