@@ -10,3 +10,4 @@
 ## 2026-05-21
 
 - [ ] https://news.hada.io/topic?id=18649
+- [ ] WebSocket 대신 롱폴링을 선택할 수 있는 이유
