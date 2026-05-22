@@ -1,5 +1,13 @@
 ﻿# 모기 공부해와시트
 
+> [!summary]
+> 이 문서는 Git/GitHub 협업에서 헷갈리는 개념을 따로 공부하기 위한 체크리스트다.
+>
+> - 브랜치: 작업 줄기
+> - 커밋: 변경 스냅샷
+> - PR: 내 브랜치를 main에 합쳐 달라는 요청
+> - rebase/cherry-pick: 천천히 익힐 고급 영역
+
 작성: 2026-05-14
 출처: postmortem 019 § 1-9 영역 (모기 voice — git 협업 영역 어려움)
 위치: `temp/study/공부해와시트.md` (사장님 같이 영역 영역 — 커밋 영역 들어감) + mogi-notes gist sync 영역
@@ -8,6 +16,9 @@
 ---
 
 ## cheatsheet 영역 vs 본 시트 영역 — 완전히 다른 영역
+
+> [!info]
+> 이 파일은 이미 익힌 걸 빠르게 찾아보는 cheatsheet가 아니라, 아직 따로 공부해야 할 주제를 모아둔 시트다.
 
 | 영역 | cheatsheet | 공부해와시트 (지금 이거) |
 |---|---|---|
@@ -27,6 +38,11 @@
 
 ## git / GitHub 협업
 
+> [!question]
+> 처음 헷갈렸던 지점:
+>
+> 브랜치, 커밋, PR이 여기저기 얽혀 있어서 머릿속으로 흐름이 잘 시뮬레이션되지 않음.
+
 > 모기 voice (postmortem 019 § 1-9):
 >
 > "깃 협업 방식도 어려움. 117 번 PR 사장님이 삭제하셨는데 그 이유도 모름. 브랜치라던가 커밋이라던가 이런게 여기저기 얽히고 섥혀있는게 아직 머릿속으로 잘 시뮬레이션이 안된다능."
@@ -34,6 +50,11 @@
 깃헙 안 써봐서 = 영역 영역 영역 *익혀야* 영역 핵심.
 
 ### 1. 브랜치 (branch)
+
+> [!info]
+> 브랜치는 `main`과 별도로 작업하는 commit history의 갈래다.
+>
+> 새 기능이나 문서 작업은 보통 새 브랜치에서 하고, 나중에 PR로 합친다.
 
 - [ ] 브랜치 = 무엇 — 한 commit history 줄기. main 외 따로 영역 작업하는 갈래
 - [ ] **현재 브랜치 확인** — `git branch --show-current`
@@ -47,6 +68,11 @@
 >
 
 ### 2. 커밋 (commit)
+
+> [!info]
+> 커밋은 Git history에 남는 변경 스냅샷이다.
+>
+> `git add`로 staging에 올린 변경만 `git commit`에 들어간다.
 
 - [ ] 커밋 = 무엇 — 한 변경 snapshot. git history 안 한 줄 점.
 - [ ] **`git status`** — 지금 어떤 파일 변경 / staging 영역
@@ -63,6 +89,11 @@
 >
 
 ### 3. PR (Pull Request) 흐름
+
+> [!tip]
+> 면접/설명용 한 줄:
+>
+> PR은 내 브랜치의 변경을 기준 브랜치에 합치기 전에 리뷰와 검증을 받는 협업 단위다.
 
 > 모기 voice: "117 번 PR 사장님이 삭제하셨는데 그 이유도 모름"
 
@@ -83,6 +114,9 @@
 ### 4. 외부 영역 (사장님 / 도리토 commit) 발견 시 진단
 
 postmortem 019 § 3-2 영역 — 4744c4d 고아 commit 영역 진단 명령.
+
+> [!warning]
+> 외부에서 생긴 commit이나 닫힌 PR 이유를 모를 때는 추측으로 작업하지 말고, 먼저 원격 상태와 commit 차이를 확인한다.
 
 - [ ] **`git fetch origin`** — 사장님 영역 최신 영역 가져오기 (내 브랜치 영향 X)
 - [ ] **`git log <branch> --oneline`** — 브랜치 영역 commit 줄로
@@ -161,3 +195,11 @@ postmortem 019 § 3-2 영역 — 4744c4d 고아 commit 영역 진단 명령.
 | 2026-05-16 | § 6·7·8 추가 (미공부) | M3 Phase 1 PR 중 발견 — dev↔main 통합 모델 / 로컬 stale 개념 / PR base diff. 아직 익히기 전, 시간 내서 공부 대상 |
 |  |  |  |
 
+
+## 복습 체크리스트
+
+- [ ] 브랜치가 commit history의 갈래라는 점을 설명할 수 있다.
+- [ ] git add와 git commit의 차이를 설명할 수 있다.
+- [ ] PR의 open, closed, merged 차이를 말할 수 있다.
+- [ ] git fetch origin이 내 브랜치를 직접 바꾸지 않는다는 점을 이해한다.
+- [ ] ase branch와 PR diff의 관계를 설명할 수 있다.

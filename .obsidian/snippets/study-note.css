@@ -1,0 +1,138 @@
+/*
+ * Obsidian CSS snippet for backend study notes.
+ * Enable it in Obsidian: Settings -> Appearance -> CSS snippets.
+ */
+
+.markdown-preview-view {
+  --study-radius: 8px;
+  --study-border: 1px solid rgba(120, 120, 120, 0.22);
+  --study-soft-bg: rgba(120, 120, 120, 0.06);
+}
+
+.markdown-preview-view h1,
+.markdown-preview-view h2,
+.markdown-preview-view h3 {
+  letter-spacing: 0;
+}
+
+.markdown-preview-view h1 {
+  border-bottom: var(--study-border);
+  padding-bottom: 0.35rem;
+}
+
+.markdown-preview-view p,
+.markdown-preview-view li {
+  line-height: 1.7;
+}
+
+.markdown-preview-view table {
+  width: 100%;
+  font-size: 0.95em;
+}
+
+.markdown-preview-view th {
+  background: var(--study-soft-bg);
+}
+
+.markdown-preview-view code {
+  border-radius: 4px;
+}
+
+.markdown-preview-view pre {
+  border-radius: var(--study-radius);
+  border: var(--study-border);
+}
+
+.callout {
+  border-radius: var(--study-radius);
+  border: var(--study-border);
+}
+
+.callout[data-callout="summary"] {
+  --callout-color: 44, 123, 229;
+}
+
+.callout[data-callout="info"] {
+  --callout-color: 36, 138, 120;
+}
+
+.callout[data-callout="warning"] {
+  --callout-color: 224, 143, 0;
+}
+
+.callout[data-callout="danger"] {
+  --callout-color: 210, 65, 65;
+}
+
+.callout[data-callout="tip"] {
+  --callout-color: 82, 145, 76;
+}
+
+.callout[data-callout="question"] {
+  --callout-color: 138, 97, 210;
+}
+
+.callout[data-callout="example"] {
+  --callout-color: 100, 116, 139;
+}
+
+.callout[data-callout="note"] {
+  --callout-color: 91, 111, 131;
+}
+
+.markdown-preview-view .task-list-item {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* ================================
+   Pretty Tables for Obsidian
+   ================================ */
+
+/* 표 전체 */
+.markdown-rendered table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.2em 0;
+  overflow: hidden;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 14px;
+  font-size: 0.95em;
+}
+
+/* 셀 공통 */
+.markdown-rendered th,
+.markdown-rendered td {
+  padding: 10px 14px;
+  border: none;
+  border-bottom: 1px solid var(--background-modifier-border);
+  vertical-align: top;
+}
+
+/* 헤더 */
+.markdown-rendered th {
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  font-weight: 700;
+}
+
+/* 마지막 줄 border 제거 */
+.markdown-rendered tr:last-child td {
+  border-bottom: none;
+}
+
+/* 줄무늬 */
+.markdown-rendered tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--background-secondary) 45%, transparent);
+}
+
+/* 마우스 올렸을 때 */
+.markdown-rendered tbody tr:hover {
+  background: color-mix(in srgb, var(--interactive-accent) 12%, transparent);
+}
+
+/* 첫 번째 열 살짝 강조 */
+.markdown-rendered td:first-child {
+  font-weight: 600;
+}
