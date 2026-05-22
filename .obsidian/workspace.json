@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/react-stale-closure/react-stale-closure.md",
+                "file": "notes/postgres-rls/postgresl-rls.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "react-stale-closure"
+              "title": "postgresl-rls"
             }
           }
         ]
@@ -185,8 +185,10 @@
   },
   "active": "075b9010a7f87a1d",
   "lastOpenFiles": [
-    "notes/linux-troubleshooting/process.md",
     "notes/react-stale-closure/react-stale-closure.md",
+    "notes/postgres-rls/postgresl-rls.md",
+    "notes/postgres-rls",
+    "notes/linux-troubleshooting/process.md",
     "notes/react-stale-closure",
     "notes/linux-troubleshooting/incident-flow.md",
     "notes/linux-troubleshooting/dns.md",
