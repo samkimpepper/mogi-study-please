@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "notes/postgres-rls/postgresl-rls.md",
+                "file": "notes/di/factory-pattern-di.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "postgresl-rls"
+              "title": "factory-pattern-di"
             }
           }
         ]
@@ -185,8 +185,13 @@
   },
   "active": "075b9010a7f87a1d",
   "lastOpenFiles": [
-    "notes/react-stale-closure/react-stale-closure.md",
+    "notes/di/spring-di-vs-zustand.md",
+    "notes/di/factory-pattern-di.md",
+    "notes/test/smoke-test.md",
+    "notes/di",
+    "notes/test/nullable-state-in-global-error-handler.md",
     "notes/postgres-rls/postgresl-rls.md",
+    "notes/react-stale-closure/react-stale-closure.md",
     "notes/postgres-rls",
     "notes/linux-troubleshooting/process.md",
     "notes/react-stale-closure",

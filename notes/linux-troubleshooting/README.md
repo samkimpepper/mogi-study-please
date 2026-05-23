@@ -24,6 +24,7 @@
 | --- | --- |
 | [process.md](process.md) | `ps`, `top`, `kill`, PID 확인 |
 | [resource.md](resource.md) | CPU, 메모리, 디스크 확인 |
+| [free-h.md](free-h.md) | `free -h`, 메모리 available, swap 확인 |
 | [network-port.md](network-port.md) | `ss`, `lsof`, TCP 상태 해석 |
 | [dns.md](dns.md) | DNS 문제와 확인 명령어 |
 | [incident-flow.md](incident-flow.md) | 서버가 느릴 때 실전 확인 순서 |

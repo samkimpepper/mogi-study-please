@@ -15,3 +15,6 @@
 ## 2026-05-23
 
 - [ ] `free -h`로 리눅스 메모리 상태 확인하기
+- [x] Smoke test의 의미와 Spring에서 만드는 방법
+- [x] 전역 에러 핸들러에서 nullable 상태를 안전하게 읽는 방법
+- [x] zustand factory 패턴을 Spring 생성자 주입의 함수 버전으로 이해하기
