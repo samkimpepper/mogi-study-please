@@ -1,3 +1,11 @@
+---
+tags:
+  - linux
+  - troubleshooting
+  - incident-response
+  - backend
+---
+
 # 실전 장애 확인 흐름
 
 리눅스로 서버 상태를 본다는 것은 `CPU/메모리`, `디스크`, `프로세스`, `포트/연결`, `로그`를 순서대로 확인해서 병목 위치를 좁히는 것이다.

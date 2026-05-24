@@ -1,3 +1,12 @@
+---
+tags:
+  - postgres
+  - rls
+  - supabase
+  - database
+  - backend
+---
+
 # Postgres RLS의 "조용한 0 rows" 함정 정리 🪤
 
 > 스프링 개발자가 Supabase/Postgres 처음 쓸 때 제일 먼저 데이는 곳. 핵심만 한 줄로: **권한 없으면 에러가 터질 거라는 직관이 RLS에선 깨진다.**

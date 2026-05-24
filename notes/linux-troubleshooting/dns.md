@@ -1,3 +1,11 @@
+---
+tags:
+  - linux
+  - troubleshooting
+  - dns
+  - network
+---
+
 # DNS 확인
 
 "DNS가 안 된다"는 것은 서버가 도메인 이름을 IP 주소로 바꾸지 못한다는 뜻이다.

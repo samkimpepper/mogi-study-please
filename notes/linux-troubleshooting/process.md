@@ -1,3 +1,11 @@
+---
+tags:
+  - linux
+  - troubleshooting
+  - process
+  - pid
+---
+
 # 프로세스 확인
 
 프로세스 확인은 "서버에서 어떤 프로그램이 어떤 PID로 떠 있는지"를 확인하는 작업이다.

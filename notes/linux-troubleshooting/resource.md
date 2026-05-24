@@ -1,3 +1,12 @@
+---
+tags:
+  - linux
+  - troubleshooting
+  - resource
+  - cpu
+  - memory
+---
+
 # 서버 리소스 확인
 
 서버 리소스 확인은 CPU, 메모리, 디스크가 부족한지 확인하는 작업이다.

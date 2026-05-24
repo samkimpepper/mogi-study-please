@@ -1,3 +1,12 @@
+---
+tags:
+  - di
+  - zustand
+  - factory-pattern
+  - spring
+  - testing
+---
+
 # 🔍 zustand factory 패턴 — 왜 굳이? (순환 import & 테스트)
 
 > [!abstract] 한 줄 요약 두 문제(순환 import, 테스트 어려움)의 뿌리는 **하나**다. **"의존성을 직접 import 해서 안에서 끌어다 쓰느냐(나쁨) vs 밖에서 인자로 받느냐(좋음)"** 👉 이게 바로 DI 가 풀려는 문제 그 자체. Spring `@Autowired` 가 자동화한 원리를 zustand 는 `get` 인자로 손수 적는 것.

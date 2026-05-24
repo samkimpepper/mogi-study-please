@@ -1,3 +1,12 @@
+---
+tags:
+  - ai
+  - rag
+  - search
+  - vector-search
+  - backend
+---
+
 # RAG 기초 정리
 
 > [!summary]

@@ -1,3 +1,12 @@
+---
+tags:
+  - test
+  - error-handling
+  - nullable
+  - global-error-handler
+  - frontend
+---
+
 # 전역 에러 핸들러와 Nullable 상태 처리
 
 ## 한 줄 정의

@@ -1,3 +1,12 @@
+---
+tags:
+  - di
+  - spring
+  - zustand
+  - dependency-injection
+  - factory-pattern
+---
+
 # 🔌 Spring DI vs zustand — 의존성 주입 멘탈 모델
 
 > [!abstract] 한 줄 요약 **Spring `@Autowired`** = 컨테이너(비서)가 알아서 챙겨줌 🤖 **zustand factory** = 비서가 없어서 내가 직접 `(set, get)` 손으로 넘김 ✋ 본질은 똑같다 — 옛날 `new InventoryService(authService, ...)` 로 생성자 주입하던 그 결.

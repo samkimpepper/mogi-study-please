@@ -1,3 +1,12 @@
+---
+tags:
+  - react
+  - stale-closure
+  - ref
+  - frontend
+  - debugging
+---
+
 # React ref / stale closure / write-through 캐시 공부 노트
 
 > 백엔드(자바/스프링) 관점에서 React의 한글 IME 저장 버그를 이해한 정리. "타블로"를 입력하고 저장했는데 "타블"만 저장되던 버그가 출발점.

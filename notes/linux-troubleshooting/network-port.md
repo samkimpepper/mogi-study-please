@@ -1,3 +1,12 @@
+---
+tags:
+  - linux
+  - troubleshooting
+  - network
+  - tcp
+  - port
+---
+
 # 포트와 TCP 연결 확인
 
 포트와 TCP 연결 확인은 "애플리케이션이 요청을 받을 준비가 되어 있는지", "연결이 어떤 상태로 쌓였는지"를 보는 작업이다.

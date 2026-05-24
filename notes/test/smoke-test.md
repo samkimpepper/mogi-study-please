@@ -1,3 +1,11 @@
+---
+tags:
+  - test
+  - smoke-test
+  - spring
+  - backend
+---
+
 # Smoke Test
 
 ## 한 줄 정의

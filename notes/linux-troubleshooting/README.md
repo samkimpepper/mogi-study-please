@@ -1,3 +1,11 @@
+---
+tags:
+  - linux
+  - troubleshooting
+  - backend
+  - ops
+---
+
 # 리눅스 장애 대응 기본기
 
 > [!summary]

@@ -1,3 +1,12 @@
+---
+tags:
+  - backend
+  - realtime
+  - long-polling
+  - websocket
+  - http
+---
+
 # 롱폴링과 WebSocket 비교
 
 > [!summary]

@@ -1,3 +1,11 @@
+---
+tags:
+  - linux
+  - troubleshooting
+  - memory
+  - free
+---
+
 # `free -h`로 메모리 상태 확인하기
 
 ## 한 줄 정의

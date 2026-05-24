@@ -1,3 +1,11 @@
+---
+tags:
+  - linux
+  - troubleshooting
+  - mistake-note
+  - ops
+---
+
 # 리눅스 트러블슈팅 오답노트
 
 문제를 풀다가 헷갈린 부분을 다시 보기 좋게 정리한다.
