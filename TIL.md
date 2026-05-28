@@ -30,3 +30,8 @@
 ## 2026-05-27
 
 - [ ] QuestDB OpenJDK 스레드 CPU 시간 최적화 글 댓글 이어서 읽기
+
+## 2026-05-28
+
+- [x] LLM 검색 평가에서 effect size와 Cliff's delta 의미
+- [x] LLM 검색 평가에서 statistical power와 샘플 수 의미
