@@ -3,10 +3,23 @@
  * Enable it in Obsidian: Settings -> Appearance -> CSS snippets.
  */
 
-.markdown-preview-view {
+:root {
   --study-radius: 8px;
+  --study-callout-radius: 16px;
   --study-border: 1px solid rgba(120, 120, 120, 0.22);
   --study-soft-bg: rgba(120, 120, 120, 0.06);
+  --study-table-row-border: 1px solid rgba(120, 120, 120, 0.14);
+  --study-table-cell-padding: 28px 20px;
+}
+
+.markdown-preview-view,
+.markdown-source-view {
+  --study-radius: 8px;
+  --study-callout-radius: 16px;
+  --study-border: 1px solid rgba(120, 120, 120, 0.22);
+  --study-soft-bg: rgba(120, 120, 120, 0.06);
+  --study-table-row-border: 1px solid rgba(120, 120, 120, 0.14);
+  --study-table-cell-padding: 28px 20px;
 }
 
 .markdown-preview-view h1,
@@ -25,6 +38,33 @@
   line-height: 1.7;
 }
 
+.markdown-rendered ul,
+.markdown-rendered ol,
+.markdown-source-view.mod-cm6 .HyperMD-list-line {
+  line-height: 1.75;
+}
+
+.markdown-rendered li {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+  padding-inline-start: 0.15rem;
+}
+
+.markdown-rendered li::marker {
+  color: rgba(120, 120, 120, 0.28);
+}
+
+.markdown-source-view.mod-cm6 .cm-formatting-list,
+.markdown-source-view.mod-cm6 .list-bullet {
+  color: rgba(120, 120, 120, 0.28) !important;
+  margin-inline-end: 0.25rem;
+}
+
+.markdown-source-view.mod-cm6 .list-bullet::after {
+  background-color: rgba(120, 120, 120, 0.28) !important;
+  border-color: rgba(120, 120, 120, 0.28) !important;
+}
+
 .markdown-preview-view table {
   width: 100%;
   font-size: 0.95em;
@@ -38,14 +78,43 @@
   border-radius: 4px;
 }
 
+.markdown-rendered mark,
+.markdown-preview-view mark,
+.markdown-source-view.mod-cm6 .cm-highlight {
+  background: rgb(247, 233, 239);
+  color: rgb(92, 123, 176);
+  border-radius: 3px;
+  padding: 0.08em 0.16em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 .markdown-preview-view pre {
   border-radius: var(--study-radius);
   border: var(--study-border);
 }
 
-.callout {
-  border-radius: var(--study-radius);
-  border: var(--study-border);
+.markdown-rendered .callout,
+.markdown-preview-view .callout,
+.markdown-source-view.mod-cm6 .callout {
+  border-radius: var(--study-callout-radius) !important;
+  border: none !important;
+  padding-top: 1.5rem;
+  overflow: hidden;
+}
+
+.markdown-rendered .callout .callout-title,
+.markdown-preview-view .callout .callout-title,
+.markdown-source-view.mod-cm6 .callout .callout-title {
+  border-top-left-radius: var(--study-callout-radius) !important;
+  border-top-right-radius: var(--study-callout-radius) !important;
+}
+
+.markdown-rendered .callout .callout-content,
+.markdown-preview-view .callout .callout-content,
+.markdown-source-view.mod-cm6 .callout .callout-content {
+  border-bottom-left-radius: var(--study-callout-radius) !important;
+  border-bottom-right-radius: var(--study-callout-radius) !important;
 }
 
 .callout[data-callout="summary"] {
@@ -94,27 +163,31 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin: 1.2em 0;
+  margin: 1.4em 0;
+  border: none;
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--background-modifier-border);
-  border-radius: 14px;
-  font-size: 0.95em;
+  background: var(--background-primary);
+  font-size: 0.94em;
 }
 
 /* 셀 공통 */
 .markdown-rendered th,
 .markdown-rendered td {
-  padding: 10px 14px;
+  padding: var(--study-table-cell-padding);
   border: none;
-  border-bottom: 1px solid var(--background-modifier-border);
+  border-bottom: var(--study-table-row-border);
+  border-right: none;
   vertical-align: top;
+  line-height: 1.65;
 }
 
 /* 헤더 */
 .markdown-rendered th {
-  background: var(--background-secondary);
-  color: var(--text-normal);
-  font-weight: 700;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.88em;
+  font-weight: 600;
 }
 
 /* 마지막 줄 border 제거 */
@@ -122,14 +195,17 @@
   border-bottom: none;
 }
 
-/* 줄무늬 */
-.markdown-rendered tbody tr:nth-child(even) {
-  background: color-mix(in srgb, var(--background-secondary) 45%, transparent);
+.markdown-rendered th:last-child,
+.markdown-rendered td:last-child {
+  border-right: none;
 }
 
-/* 마우스 올렸을 때 */
-.markdown-rendered tbody tr:hover {
-  background: color-mix(in srgb, var(--interactive-accent) 12%, transparent);
+.markdown-rendered thead tr:last-child th {
+  border-bottom: var(--study-table-row-border);
+}
+
+.markdown-rendered tbody tr {
+  background: transparent;
 }
 
 /* 첫 번째 열 살짝 강조 */
