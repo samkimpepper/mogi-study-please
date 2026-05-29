@@ -227,7 +227,7 @@ Precision@5 dropped slightly, but Recall@5 improved.
 정답을 놓칠 수 있음 -> Recall 감소
 ```
 
-## 실무에서 보는 포인트
+## 실무에서 보는 포인트 
 
 | 관점 | 확인할 것 | 왜 중요한가 |
 | --- | --- | --- |
@@ -247,7 +247,7 @@ Precision@5 dropped slightly, but Recall@5 improved.
 - `Precision`은 가져온 것 중 정답 비율이다.
 - `Recall`은 전체 정답 중 찾아낸 비율이다.
 - `@K`는 상위 K개 결과만 보고 계산한다는 뜻이다.
-- LLM wiki에서는 검색 결과가 나쁘면 LLM 답변도 같이 흔들릴 수 있다.
+- LLM wiki에서는 *==검색 결과가==* 나쁘면 LLM 답변도 같이 흔들릴 수 있다.
 
 ## 복습 질문
 
@@ -259,4 +259,4 @@ Precision@5 dropped slightly, but Recall@5 improved.
 
 ## 한 줄 회고
 
-- 헷갈렸던 점: PR 본문의 검색 평가 지표는 LLM 답변 점수가 아니라, LLM에게 넣을 근거 문서를 검색기가 얼마나 잘 찾았는지 보는 숫자라는 점.
+- 헷갈렸던 점: PR 본문의 검색 평가 지표는 ==LLM 답변== 점수가 아니라, LLM에게 넣을 근거 문서를 검색기가 얼마나 잘 찾았는지 보는 숫자라는 점.
