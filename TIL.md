@@ -35,3 +35,7 @@
 
 - [x] LLM 검색 평가에서 effect size와 Cliff's delta 의미
 - [x] LLM 검색 평가에서 statistical power와 샘플 수 의미
+
+## 2026-05-31
+
+- [x] Shopify 재고 예약 시스템과 MySQL `SKIP LOCKED`
