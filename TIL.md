@@ -9,8 +9,8 @@
 
 ## 2026-05-21
 
-- [ ] https://news.hada.io/topic?id=18649
-- [ ] WebSocket 대신 롱폴링을 선택할 수 있는 이유
+- [x] https://news.hada.io/topic?id=18649
+- [x] WebSocket 대신 롱폴링을 선택할 수 있는 이유
 
 ## 2026-05-23
 
@@ -22,6 +22,10 @@
 ## 2026-05-24
 
 - [x] PR 변경 파일 기준 자동 라벨링으로 마이그레이션 확인 라벨 붙이기
+
+## 2026-05-25
+
+- [ ] https://news.hada.io/topic?id=29811
 
 ## 2026-05-26
 
