@@ -43,3 +43,7 @@
 ## 2026-05-31
 
 - [x] Shopify 재고 예약 시스템과 MySQL `SKIP LOCKED`
+
+## 2026-06-02
+
+- [x] MSSQL 트랜잭션 로그 FULL과 `ACTIVE_TRANSACTION`
