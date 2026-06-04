@@ -47,3 +47,7 @@
 ## 2026-06-02
 
 - [x] MSSQL 트랜잭션 로그 FULL과 `ACTIVE_TRANSACTION`
+
+## 2026-06-04
+
+- [x] Postgres trigger의 `COUNT(*)` 검증과 동시성 락 문제
