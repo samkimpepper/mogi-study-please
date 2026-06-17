@@ -279,6 +279,8 @@ git show pr-162:.../NewProductSheet.tsx \
 
 > 캐시(ref)와 저장소(state)를 가진 시스템에서, 갱신 로직을 **"읽기 타이밍 의존(render-time sync)"**에서 **"쓰기 시점 write-through(setter wrapper)"**로 바꾼 리팩터. 이런 변경의 단골 회귀는 **write-through 레이어를 우회하는 직접 쓰기.** 그래서 리뷰는 "모든 쓰기가 wrapper를 통과하는가"를 **전수로** 확인하는 것 — 한 곳만 빠져도 조용히 깨지니까.
 
+관련 노트: [[React controlled input과 한글 IME 끝글자 잘림]]
+
 ### 개념 대응표
 
 |React|하는 일|백엔드 비유|
