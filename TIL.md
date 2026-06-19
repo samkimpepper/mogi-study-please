@@ -75,3 +75,5 @@
 
 - [x] Boolean을 숫자로 더하는 검증 코드 안티패턴
 - [x] C 포인터 산술과 CPU 아키텍처별 이식성
+- [x] Postgres MVCC와 dead tuple, VACUUM
+- [x] MSSQL 기본 락과 row versioning 동시성
