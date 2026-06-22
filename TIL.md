@@ -80,6 +80,7 @@
 
 ## 2026-06-22
 
+- [x] Transformer와 attention 기본 개념
 - [x] LLM이 자기 사고과정을 정확히 설명할 수 없는 이유
 - [x] LLM 내부 사고과정을 스택트레이스처럼 출력하기 어려운 이유
 - [x] Chain-of-thought와 console log의 차이
