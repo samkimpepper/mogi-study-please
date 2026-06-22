@@ -77,3 +77,8 @@
 - [x] C 포인터 산술과 CPU 아키텍처별 이식성
 - [x] Postgres MVCC와 dead tuple, VACUUM
 - [x] MSSQL 기본 락과 row versioning 동시성
+
+## 2026-06-22
+
+- [x] LLM이 자기 사고과정을 정확히 설명할 수 없는 이유
+- [x] LLM 내부 사고과정을 스택트레이스처럼 출력하기 어려운 이유
