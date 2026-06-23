@@ -54,6 +54,9 @@ tags:
 
 ## Obsidian 스타일 취향
 
+- 사용자는 `notes/ai/claude-code-prohan-surrogate-brick-bug.md`처럼 이모지 섹션 제목, `---` 구분선, 일반 문단 중심의 읽는 맛이 있는 노트 스타일을 선호한다.
+- `> [!summary]`, `> [!info]`, `> [!warning]`, `> [!tip]` 같은 callout은 완전 금지는 아니지만 남발하지 않는 편을 선호한다. 핵심 요약, 주의점, 면접 답변처럼 진짜 구분이 필요한 곳에만 쓴다.
+- 노트 전체가 callout 박스 위주로 쌓이면 딱딱해 보이므로, 일반 문단과 짧은 인용문, 표, 코드블록을 적당히 섞어 정리하는 편을 선호한다.
 - callout은 각진 기본 스타일보다 둥근 모서리를 선호한다.
 - callout 외곽 border는 없는 스타일을 선호한다.
 - callout은 기본보다 위쪽 padding이 넉넉한 스타일을 선호한다.
