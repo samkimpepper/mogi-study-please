@@ -98,3 +98,11 @@
 
 - [x] LLM 추가형 메모리와 최신 상태 추적 한계
 - [x] 진화와 유전 알고리즘, 그리디 탐색의 관계
+
+## 2026-06-27
+
+- [x] Spring/JPA 관점에서 DB 에러코드 추상화와 Supabase 직접 호출 에러 처리 이해하기
+- [x] ErrorCode와 BusinessException으로 에러 의미를 한 곳에서 정의하는 이유
+- [x] 비즈니스 검증과 DB 제약조건, DataIntegrityViolationException의 역할 구분
+- [x] Spring 베스트프랙티스로 Supabase 직접 호출 구조의 경계 문제 비교하기
+- [x] Spring Security의 PreAuthorize와 PostgreSQL 함수 권한 이중 방어 비교하기
