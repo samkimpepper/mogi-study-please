@@ -106,3 +106,7 @@
 - [x] 비즈니스 검증과 DB 제약조건, DataIntegrityViolationException의 역할 구분
 - [x] Spring 베스트프랙티스로 Supabase 직접 호출 구조의 경계 문제 비교하기
 - [x] Spring Security의 PreAuthorize와 PostgreSQL 함수 권한 이중 방어 비교하기
+
+## 2026-07-01
+
+- [ ] https://news.hada.io/topic?id=30910
