@@ -3,6 +3,7 @@ tags:
   - c
   - memory
   - embedded
+review_answered: false
 ---
 
 # C 배열이 길이 메타데이터를 들고 있지 않는 이유

@@ -3,6 +3,7 @@ tags:
   - jvm
   - linux
   - performance
+review_answered: false
 ---
 
 # OpenJDK 스레드 CPU 시간 조회 최적화

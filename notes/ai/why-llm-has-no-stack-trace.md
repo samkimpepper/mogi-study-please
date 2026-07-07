@@ -5,6 +5,7 @@ tags:
   - interpretability
   - mechanistic-interpretability
   - backend
+review_answered: false
 ---
 
 # 왜 LLM 사고과정은 스택트레이스처럼 찍기 어려운가

@@ -5,6 +5,7 @@ tags:
   - cpu
   - cache
   - virtual-memory
+review_answered: false
 ---
 
 # 캐시 라인과 페이지는 뭐가 다른가

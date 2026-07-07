@@ -6,6 +6,7 @@ tags:
   - filesystem
   - sandbox
   - development-environment
+review_answered: false
 ---
 
 # 모바일과 데스크탑 개발환경 차이

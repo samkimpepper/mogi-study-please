@@ -4,6 +4,7 @@ tags:
   - spring
   - error-handling
   - exception
+review_answered: false
 ---
 
 # ErrorCode와 BusinessException으로 에러 의미를 한 곳에서 정의하기

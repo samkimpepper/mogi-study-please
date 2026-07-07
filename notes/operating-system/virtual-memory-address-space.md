@@ -2,6 +2,7 @@
 tags:
   - operating-system
   - memory
+review_answered: false
 ---
 
 # 프로세스마다 독립된 가상 주소 공간이 있다는 뜻

@@ -3,6 +3,7 @@ tags:
   - backend
   - oop
   - polymorphism
+review_answered: false
 ---
 
 # OOP와 선택문, 그리고 다형성

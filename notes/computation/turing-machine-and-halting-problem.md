@@ -4,6 +4,7 @@ tags:
   - turing-machine
   - halting-problem
   - computer-science
+review_answered: false
 ---
 
 # 튜링 머신과 정지 문제 입문

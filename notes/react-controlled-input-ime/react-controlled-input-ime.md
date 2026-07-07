@@ -5,6 +5,7 @@ tags:
   - controlled-input
   - frontend
   - debugging
+review_answered: false
 ---
 
 # React controlled input과 한글 IME 끝글자 잘림

@@ -6,6 +6,7 @@ tags:
   - greedy
   - hill-climbing
   - evolution
+review_answered: false
 ---
 
 # 🧬 진화는 탐색 알고리즘인가

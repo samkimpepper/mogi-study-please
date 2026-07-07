@@ -7,6 +7,7 @@ tags:
   - backtracking
   - scratchpad
   - computation
+review_answered: false
 ---
 
 # LLM이 스도쿠 같은 백트래킹 문제에 약한 이유

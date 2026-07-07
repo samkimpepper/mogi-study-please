@@ -6,6 +6,7 @@ tags:
   - memory
   - state-tracking
   - sudoku
+review_answered: false
 ---
 
 # 🧠 LLM 추가형 메모리와 최신 상태 추적 한계

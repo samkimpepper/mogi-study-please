@@ -5,6 +5,7 @@ tags:
   - engineering
   - documentation
   - llm-wiki
+review_answered: false
 ---
 
 # AI 에이전트와 의도 부채

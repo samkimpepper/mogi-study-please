@@ -6,6 +6,7 @@ tags:
   - error-handling
   - supabase
   - typescript
+review_answered: false
 ---
 
 # Spring 베스트프랙티스로 보는 Supabase 직접 호출 구조의 경계 문제

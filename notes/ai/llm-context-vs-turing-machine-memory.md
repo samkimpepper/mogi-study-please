@@ -6,6 +6,7 @@ tags:
   - context-window
   - turing-machine
   - computation
+review_answered: false
 ---
 
 # LLM 컨텍스트와 튜링 머신 메모리 차이

@@ -7,6 +7,7 @@ tags:
   - interpretability
   - introspection
   - stack-trace
+review_answered: false
 ---
 
 # 사람 뇌와 LLM은 왜 스택트레이스를 찍기 어려운가

@@ -7,6 +7,7 @@ tags:
   - evaluation
   - statistics
   - backend
+review_answered: false
 ---
 
 # Effect Size와 Cliff's Delta 기초

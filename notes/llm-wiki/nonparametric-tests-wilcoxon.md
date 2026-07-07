@@ -7,6 +7,7 @@ tags:
   - evaluation
   - statistics
   - backend
+review_answered: false
 ---
 
 # 비모수 검정과 Wilcoxon 기초

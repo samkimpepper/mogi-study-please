@@ -4,6 +4,7 @@ tags:
   - memory
   - units
   - byte
+review_answered: false
 ---
 
 # 바이트 크기 단위 정리

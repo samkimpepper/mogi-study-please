@@ -6,6 +6,7 @@ tags:
   - error-handling
   - transaction
   - concurrency
+review_answered: false
 ---
 
 # 비즈니스 검증, BusinessException, 그리고 DB 최종 방어선

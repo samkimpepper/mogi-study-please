@@ -5,6 +5,7 @@ tags:
   - database
   - mvcc
   - vacuum
+review_answered: false
 ---
 
 # Postgres MVCC와 dead tuple, VACUUM

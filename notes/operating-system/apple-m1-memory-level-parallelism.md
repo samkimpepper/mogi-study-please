@@ -6,6 +6,7 @@ tags:
   - memory
   - apple-m1
   - performance
+review_answered: false
 ---
 
 # Apple M1의 메모리 병렬성 이해하기

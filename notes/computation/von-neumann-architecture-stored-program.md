@@ -2,6 +2,7 @@
 tags:
   - computation
   - computer-architecture
+review_answered: false
 ---
 
 # 폰 노이만 구조가 혁신적이었던 이유

@@ -6,6 +6,7 @@ tags:
   - home-server
   - port-forwarding
   - ssh
+review_answered: false
 ---
 
 # Tailscale과 포트포워딩

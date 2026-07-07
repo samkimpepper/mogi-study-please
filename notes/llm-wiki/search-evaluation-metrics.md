@@ -6,6 +6,7 @@ tags:
   - search
   - evaluation
   - backend
+review_answered: false
 ---
 
 # 검색 평가 지표 기초

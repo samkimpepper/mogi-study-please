@@ -7,6 +7,7 @@ tags:
   - evaluation
   - statistics
   - backend
+review_answered: false
 ---
 
 # Statistical Power 기초

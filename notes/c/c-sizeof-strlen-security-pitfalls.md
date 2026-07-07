@@ -4,6 +4,7 @@ tags:
   - security
   - memory
   - string
+review_answered: false
 ---
 
 # C sizeof와 strlen에서 생기는 보안 함정

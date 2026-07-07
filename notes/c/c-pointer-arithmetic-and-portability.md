@@ -4,6 +4,7 @@ tags:
   - pointer
   - memory
   - portability
+review_answered: false
 ---
 
 # C 포인터 산술과 이식성

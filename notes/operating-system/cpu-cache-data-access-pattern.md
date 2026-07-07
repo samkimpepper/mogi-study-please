@@ -5,6 +5,7 @@ tags:
   - cache
   - memory
   - performance
+review_answered: false
 ---
 
 # CPU를 화나게 만드는 데이터 접근 패턴

@@ -3,6 +3,7 @@ tags:
   - engineering
   - security
   - web
+review_answered: false
 ---
 
 # 직접 구현하지 말라는 말의 진짜 의미

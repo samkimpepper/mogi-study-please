@@ -4,6 +4,7 @@ tags:
   - mssql
   - transaction
   - database
+review_answered: false
 ---
 
 # MSSQL 트랜잭션 로그 FULL과 ACTIVE_TRANSACTION

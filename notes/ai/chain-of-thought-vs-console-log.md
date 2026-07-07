@@ -5,6 +5,7 @@ tags:
   - chain-of-thought
   - debugging
   - backend
+review_answered: false
 ---
 
 # Chain-of-Thought와 Console Log는 무엇이 다른가

@@ -7,6 +7,7 @@ tags:
   - evaluation
   - statistics
   - backend
+review_answered: false
 ---
 
 # 가설 검정 아주 기초

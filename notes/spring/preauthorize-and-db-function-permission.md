@@ -6,6 +6,7 @@ tags:
   - postgres
   - security
   - supabase
+review_answered: false
 ---
 
 # PreAuthorize와 DB 함수 권한의 이중 방어

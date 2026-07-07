@@ -3,6 +3,7 @@ tags:
   - ai
   - llm
   - transformer
+review_answered: false
 ---
 
 # Transformer와 Attention 기본 개념

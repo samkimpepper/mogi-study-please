@@ -6,6 +6,7 @@ tags:
   - prompt
   - weights
   - guardrails
+review_answered: false
 ---
 
 # LLM이 같은 실수를 반복하는 이유

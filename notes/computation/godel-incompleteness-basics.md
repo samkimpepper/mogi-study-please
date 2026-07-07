@@ -5,6 +5,7 @@ tags:
   - incompleteness
   - computation
   - computer-science
+review_answered: false
 ---
 
 # 괴델 불완전성 정리 입문

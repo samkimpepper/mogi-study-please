@@ -4,6 +4,7 @@ tags:
   - postgres
   - database
   - concurrency
+review_answered: false
 ---
 
 # Postgres 락과 COUNT trigger 동시성 문제

@@ -5,6 +5,7 @@ tags:
   - memory
   - heap
   - stack
+review_answered: false
 ---
 
 # C 배열/구조체와 Java 배열의 저장 위치 차이

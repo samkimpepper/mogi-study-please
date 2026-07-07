@@ -3,6 +3,7 @@ tags:
   - engineering
   - javascript
   - readability
+review_answered: false
 ---
 
 # Boolean을 숫자로 더하는 검증 코드 안티패턴

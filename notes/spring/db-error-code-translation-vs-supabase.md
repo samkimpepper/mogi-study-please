@@ -6,6 +6,7 @@ tags:
   - error-handling
   - supabase
   - postgres
+review_answered: false
 ---
 
 # DB 에러코드 직접 분기와 Spring/JPA의 예외 추상화

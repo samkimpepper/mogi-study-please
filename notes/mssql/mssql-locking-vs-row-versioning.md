@@ -5,6 +5,7 @@ tags:
   - database
   - concurrency
   - transaction
+review_answered: false
 ---
 
 # MSSQL 기본 락과 row versioning 동시성

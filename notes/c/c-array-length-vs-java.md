@@ -3,6 +3,7 @@ tags:
   - c
   - java
   - memory
+review_answered: false
 ---
 
 # C 배열 길이와 Java 배열의 차이
