@@ -26,6 +26,7 @@ LLM이 왜 자기 사고과정을 정확히 설명하기 어렵고, 왜 계산�
 | [LLM 컨텍스트와 튜링 머신 메모리 차이](llm-context-vs-turing-machine-memory.md) | 컨텍스트, self-attention, 명시적 메모리는 어떻게 다른가? |
 | [LLM이 스도쿠 같은 백트래킹 문제에 약한 이유](llm-sudoku-backtracking-limit.md) | LLM은 왜 솔버를 짜는 건 잘해도 솔버 자체가 되는 건 약한가? |
 | [LLM 추가형 메모리와 최신 상태 추적 한계](llm-append-only-memory-state-tracking.md) | LLM은 수정 내용을 계속 추가할 수 있는데도 왜 최신 상태 추적에서 헷갈리는가? |
+| [벡터를 계산하는 AI는 어떻게 브라우저를 보고 움직일까?](ai-agent-browser-control-and-multimodal-vision.md) | AI 에이전트는 브라우저를 어떻게 제어하고 이미지 픽셀을 어떻게 의미로 바꾸는가? |
 
 ## LLM 실수와 검증
 
@@ -42,6 +43,7 @@ AI 에이전트를 코드베이스나 조직 지식과 함께 쓸 때 생기는 
 | 노트 | 핵심 질문 |
 | --- | --- |
 | [AI 에이전트와 의도 부채](intent-debt-and-agents.md) | 코드에 남지 않은 의도와 맥락은 에이전트 시대에 왜 부채가 되는가? |
+| [벡터를 계산하는 AI는 어떻게 브라우저를 보고 움직일까?](ai-agent-browser-control-and-multimodal-vision.md) | LLM·로컬 실행기·Chrome 확장 프로그램은 어떻게 하나의 에이전트 루프를 만드는가? |
 
 ## Claude Code와 디버깅 사례
 
