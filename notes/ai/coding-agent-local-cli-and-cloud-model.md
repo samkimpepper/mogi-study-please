@@ -184,6 +184,8 @@ flowchart LR
 
 이런 **판단 → 도구 요청 → 로컬 실행 → 결과 전달 → 다음 판단**의 반복을 에이전트 루프라고 이해하면 된다.
 
+관련 노트: [코딩 에이전트는 모델과 무엇을 주고받을까?](coding-agent-json-streaming-tool-calls.md)
+
 ---
 
 ## 🌐 API를 사용하는 걸까?

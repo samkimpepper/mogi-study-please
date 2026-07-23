@@ -280,3 +280,4 @@ LINE 757 의 실제 `description` 필드 (깨진 부분):
 - 라벨: `area:core`, `bug`, `platform:macos`
 - 환경: Claude Code + Opus 4.7 (1M context), macOS Darwin 24.6.0
 - trigger turn: `2026-05-23T05:23:54.040Z`
+- 관련 노트: [코딩 에이전트는 모델과 무엇을 주고받을까?](coding-agent-json-streaming-tool-calls.md)
