@@ -36,6 +36,9 @@ tags:
 
 같은 글자라도 UTF-8 과 UTF-16 은 저장하는 바이트가 다르다. **"번호표(코드포인트) ↔ 저장방식(인코딩) 은 별개의 층"** 이 한 문장이 이 이슈 전체를 푸는 열쇠.
 
+> [!note]
+> `A=65`가 실제로 어떤 바이트로 저장되는지부터 다시 잡으려면 [[codepoint-vs-encoding-a-65]] 참고.
+
 ### 0.2 surrogate 는 UTF-16 의 사정
 
 UTF-16 은 한 글자를 16비트 (0~65535) 한 칸으로 표현한다. 근데 이모지처럼 65535 를 넘는 큰 글자가 생기면서 한 칸으로 부족해짐.
@@ -277,6 +280,7 @@ LINE 757 의 실제 `description` 필드 (깨진 부분):
 ## 🔗 참고
 
 - 원본 이슈: https://github.com/anthropics/claude-code/issues/61670
+- 코드포인트와 인코딩 기초: [[codepoint-vs-encoding-a-65]]
 - 라벨: `area:core`, `bug`, `platform:macos`
 - 환경: Claude Code + Opus 4.7 (1M context), macOS Darwin 24.6.0
 - trigger turn: `2026-05-23T05:23:54.040Z`
