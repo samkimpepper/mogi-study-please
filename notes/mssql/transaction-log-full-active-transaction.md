@@ -84,6 +84,37 @@ SQL Server는 이런 내용을 순서대로 기록한다. 이유는 장애가 �
 > [!summary]
 > 트랜잭션 로그는 성능을 위해 대충 남기는 기록이 아니라, 장애 복구와 롤백을 위해 반드시 필요한 변경 이력이다.
 
+## 트랜잭션 로그와 MVCC version store는 다르다
+
+MSSQL에서 “과거 변경 내용을 남긴다”는 표현은 트랜잭션 로그와 row version을 혼동하게 만들 수 있다. 둘은 목적이 다르다.
+
+| 구분 | 트랜잭션 로그 | Version store |
+| --- | --- | --- |
+| 주된 목적 | 장애 복구, rollback, durability | snapshot 기반 조회에 과거 row 제공 |
+| 발생 조건 | 데이터 변경 작업에 기본적으로 필요 | row versioning을 사용하는 격리 설정 등에서 관여 |
+| 대표 증상 | 로그 파일 증가, 로그 재사용 지연, log full | version store 증가, 오래된 row version 정리 지연 |
+
+트랜잭션 로그는 `INSERT`, `UPDATE`, `DELETE`의 변경을 복구하거나 rollback하기 위해 필요하다. version store는 `READ_COMMITTED_SNAPSHOT`이나 `SNAPSHOT ISOLATION`처럼 row versioning을 사용하는 조회에 과거 버전을 제공하는 역할을 한다.
+
+따라서 대량 `DELETE`는 환경과 설정에 따라 두 비용을 모두 만들 수 있다.
+
+```text
+대량 DELETE
+├─ 트랜잭션 로그 증가: 복구와 rollback을 위해 필요
+└─ row version 증가 가능: 기존 snapshot 조회를 위해 필요
+```
+
+하지만 이번 에러의 직접 원인은 version store가 아니었다.
+
+```sql
+The transaction log for database 'STM' is full due to 'ACTIVE_TRANSACTION'
+```
+
+이 메시지는 아직 끝나지 않은 트랜잭션 때문에 복구와 rollback에 필요한 로그를 재사용하지 못했고, 새로운 로그를 기록할 공간도 부족해졌다는 뜻이다.
+
+PostgreSQL의 dead tuple과 undo·version store 방식의 차이는 [[postgres-mvcc-cost-tradeoffs]], 애플리케이션에서 긴 트랜잭션과 대량 배치를 다루는 방법은 [[mvcc-practical-guide-for-junior-backend]]에서 이어진다.
+
+
 ## 로그가 찬다는 말의 의미
 
 트랜잭션 로그 파일은 실제 디스크에 있는 물리 파일이다.
@@ -374,6 +405,9 @@ DBCC SQLPERF(LOGSPACE);
 평소에는 약 40% 수준이던 로그 사용률이, 프로시저 실행 중에는 100% 이상으로 증가했다.
 
 또한 테스트 환경의 `STM` 로그 파일 크기가 `1MB`로 매우 작았다. 반면 운영 DB의 `STM` 로그 파일은 약 `186GB`였다.
+
+> [!note]
+> SQL Server의 트랜잭션 로그 파일은 스키마 단위가 아니라 데이터베이스 단위다. 이번 사례에서는 특정 스키마의 로그가 아니라 `STM` 데이터베이스의 로그 파일이 작았던 것이다.
 
 ```text
 테스트 STM 로그 파일
