@@ -110,3 +110,7 @@
 ## 2026-07-01
 
 - [ ] https://news.hada.io/topic?id=30910
+
+## 2026-07-31
+
+- [x] TypeScript의 `as`가 런타임 검사를 하지 않는 이유와 Java enum 비교
