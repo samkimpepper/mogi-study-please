@@ -358,6 +358,53 @@ Spring으로 치면 DB 스키마나 Entity는 바뀌었는데, 낡은 RowMapper�
 > - `as`가 많아질수록 컴파일러가 잡아줄 수 있는 문제가 줄어든다.
 > - 타입 단언이 반복되는 곳은 경계가 약하거나 데이터 모양이 정리되지 않았다는 신호일 수 있다.
 
+### 실제 사례: 하드코딩보다 위험했던 사본 목록
+
+사이드 프로젝트의 `SheetManager`에는 manager 데이터를 사용하는 시트 종류가 별도 배열에 적혀 있었다. 바로 아래의 `sheets` 설정표에도 각 시트와 실제 props 연결 관계가 이미 존재했다.
+
+```ts
+const mapConsumerKinds = [
+  'swatch',
+  'comparison',
+  'shot_viewer',
+  'wish',
+  'shade_picker',
+  'inventory_add',
+]
+```
+
+문제는 문자열 리터럴이 있다는 사실이 아니라, **“어느 시트가 manager 데이터를 사용하는가?”라는 같은 지식이 두 곳에 적혀 있었다는 것**이다. 새 시트를 실제 설정표에는 추가하고 사본 목록에는 넣지 않으면 그 시트만 오류 화면이 나타나지 않는 drift가 생길 수 있다.
+
+수정 후에는 진실인 `sheets` 설정표의 각 행에 `usesManagerData`를 표시하고, 오류 화면 여부를 그 표에서 파생했다.
+
+```ts
+const sheets = [
+  {
+    id: 'detail',
+    kinds: ['swatch', 'comparison', 'shot_viewer'],
+    usesManagerData: true,
+    node: <DetailSheet />,
+  },
+  {
+    id: 'profile',
+    kinds: ['profile'],
+    usesManagerData: false,
+    node: <ProfileDrawer />,
+  },
+]
+
+const showDataErrorSheet =
+  dataError &&
+  sheetKind != null &&
+  sheets.some(
+    (sheet) => sheet.usesManagerData && sheet.kinds.includes(sheetKind),
+  )
+```
+
+시트를 추가하는 사람은 진실인 표 한 곳에서 manager 데이터 사용 여부까지 함께 답하게 된다.
+
+> 하드코딩의 진짜 위험은 리터럴 자체가 아니라 같은 사실의 사본이다. 같은 지식이 두 곳에 있으면 언젠가 서로 어긋난다.
+
 ## 비교 5: 전역 클라이언트와 의존성 방향
 
 Spring에서도 어디서나 `DataSource`를 주입받을 수 있게 열어두면 경계가 약해진다.

@@ -385,6 +385,44 @@ DB 연결 실패, 권한 없음, 제약조건 위반, 잘못된 인자, 예상 �
 
 하지만 실패는 실패로 전파하고, 전역 핸들러나 UI 정책에서 다뤄야 한다.
 
+### 실제 사례: 화면의 catch가 죽은 코드가 된 이유
+
+사이드 프로젝트의 기여 목록 화면에는 데이터 로딩 실패 시 inline 재시도를 보여주는 `catch`가 있었다. 하지만 아래 repository 함수가 Supabase 오류를 잡은 뒤 빈 배열로 바꿔 반환하고 있었다.
+
+```ts
+export async function getMyContributionIds(
+  options?: { throwOnError?: boolean },
+): Promise<string[]> {
+  const { data, error } = await supabase.rpc('my_contribution_ids')
+
+  if (error) {
+    console.warn('[swatchesRepo.getMyContributionIds]', error)
+    if (options?.throwOnError) throw error
+    return []
+  }
+
+  return (data ?? []).map((row) => String(row.id))
+}
+```
+
+화면의 `catch`는 오류가 자신에게 도착해야 실행된다. repository가 오류를 `[]`라는 성공 모양으로 바꾸면 화면에는 실패가 도착한 적이 없으므로, 재시도 UI는 영원히 나타나지 않는다.
+
+```text
+Supabase 실패
+  ↓
+repository가 catch
+  ↓
+빈 배열 [] 반환
+  ↓
+화면은 정상적인 0건으로 판단
+  ↓
+화면 catch는 실행되지 않음
+```
+
+이번 수정에서는 기존 호출자의 동작을 한꺼번에 깨지 않도록 `throwOnError` 옵션 경로를 추가했다. 실패를 UI로 보여줘야 하는 화면은 오류를 다시 던지도록 요청하고, 기존에 빈 배열 계약을 사용하던 호출자는 당장 유지했다.
+
+> `catch`를 붙였다는 사실만으로 안전망이 동작하는 것은 아니다. 아래 계층이 실패를 성공 값으로 바꿔치기하면 위 계층의 안전망은 일할 기회를 얻지 못한다.
+
 ## 전체 동작 흐름
 
 ```mermaid
