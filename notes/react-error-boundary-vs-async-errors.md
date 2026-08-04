@@ -76,6 +76,169 @@ async function handleSave() {
 
 ---
 
+## 렌더가 끝나면 ErrorBoundary의 호출 경로도 끝난다
+
+ErrorBoundary는 과거에 끝난 렌더를 계속 감시하는 장치가 아니다. React가 컴포넌트 트리를 렌더하는 동안 그 호출 경로에서 발생한 예외를 복구하는 장치다.
+
+개념적으로 단순화하면 React는 다음과 비슷한 실행 흐름을 가진다.
+
+```js
+try {
+  renderComponentTree()
+} catch (error) {
+  findNearestErrorBoundary()
+  renderFallback()
+}
+```
+
+실제 React 구현이 이 코드 그대로라는 뜻은 아니다. 중요한 것은 렌더 중 발생한 예외가 같은 호출 스택을 타고 React의 렌더 실행부까지 올라온다는 점이다.
+
+```text
+React 렌더 실행부
+└─ 부모 컴포넌트 렌더
+   └─ 자식 컴포넌트 렌더
+      └─ 예외 발생
+```
+
+이때 React는 어느 컴포넌트를 그리다 실패했는지와 가장 가까운 ErrorBoundary가 어디인지 알 수 있다. 그래서 망가진 트리 부분을 버리고 해당 boundary의 fallback으로 교체할 수 있다.
+
+렌더가 성공적으로 끝나면 이 호출 스택도 종료된다.
+
+```text
+React 렌더 시작
+  ↓
+컴포넌트 함수 호출
+  ↓
+렌더 완료
+  ↓
+브라우저에 화면 표시
+  ↓
+렌더 호출 스택 종료
+```
+
+나중에 사용자가 버튼을 클릭하면 브라우저가 새로운 호출 스택에서 이벤트 핸들러를 실행한다.
+
+```text
+렌더할 때
+
+React
+└─ SaveButton 렌더
+   └─ 성공하고 종료
+
+
+나중에 클릭할 때
+
+브라우저
+└─ click 이벤트
+   └─ handleSave
+      └─ save
+         └─ 예외 발생
+```
+
+클릭 이벤트의 호출 경로에는 이미 종료된 React 렌더 실행부와 ErrorBoundary가 없다. 예외가 시간을 거슬러 과거 호출 스택으로 돌아갈 수도 없다.
+
+> ErrorBoundary가 렌더 후에 감시를 중단한 것이 아니라, 이벤트 핸들러의 호출 경로에는 처음부터 ErrorBoundary가 없다.
+
+### `await` 뒤의 실패는 더 분명하게 실행 경계가 갈린다
+
+```tsx
+async function handleSave() {
+  await save()
+}
+```
+
+`await`에서 함수는 실행을 잠시 양보하고 현재 호출 스택은 종료된다. Promise의 결과가 나중에 도착하면 microtask에서 이어서 실행된다.
+
+```text
+클릭 호출 스택
+  ↓
+handleSave 실행
+  ↓
+save Promise 시작
+  ↓
+await에서 현재 호출 스택 종료
+
+──── 시간이 흐름 ────
+
+Promise 실패
+  ↓
+microtask에서 실패 처리
+```
+
+Promise가 실패한 시점에는 렌더 호출 스택도, 처음 클릭했을 때의 호출 스택도 끝난 상태다. 따라서 비동기 작업을 시작한 코드가 직접 오류를 처리해야 한다.
+
+```tsx
+async function handleSave() {
+  try {
+    await save()
+  } catch (error) {
+    setSaveError(error)
+  }
+}
+```
+
+### Java도 비동기 실행 경계가 갈리면 똑같다
+
+일반적인 Spring MVC 요청은 같은 요청 스레드의 동기 호출 체인에서 실행된다.
+
+```text
+DispatcherServlet
+└─ Controller
+   └─ Service
+      └─ Repository
+         └─ 예외 발생
+```
+
+Repository 예외가 같은 호출 스택을 타고 올라오기 때문에 `@RestControllerAdvice` 같은 예외 처리기가 받을 수 있다.
+
+하지만 별도 실행기에 작업을 넘기면 바깥 `try-catch`는 그 작업의 예외를 잡지 못한다.
+
+```java
+try {
+    executor.submit(() -> {
+        throw new RuntimeException("비동기 실패");
+    });
+} catch (Exception e) {
+    // 작업 스레드에서 나중에 발생한 예외는 여기서 잡히지 않는다.
+}
+```
+
+```text
+요청 스레드
+try
+└─ executor.submit
+   └─ 작업 등록 후 반환
+try 종료
+
+
+작업 스레드
+└─ Runnable 실행
+   └─ 예외 발생
+```
+
+작업 스레드의 호출 스택에는 요청 스레드의 `try-catch`가 없기 때문이다. `CompletableFuture.exceptionally()`, 작업 내부의 `try-catch`, 비동기 실행기의 오류 처리처럼 새 실행 경계에 맞는 처리 방식이 필요하다.
+
+Spring이 Controller가 반환한 `CompletableFuture`의 실패를 MVC 예외 처리와 연결해주는 경우도 있다. 이는 예외가 자동으로 과거 스택을 찾아간 것이 아니라, Spring이 Future의 완료 결과를 구독하여 자신의 예외 처리 파이프라인에 명시적으로 다시 연결한 것이다.
+
+### 전역 오류 감지와 화면 복구도 구분한다
+
+브라우저의 전역 `error`나 `unhandledrejection` 이벤트로 비동기 오류를 관측할 수는 있다. 하지만 이것만으로는 어느 ErrorBoundary의 화면을 교체해야 하는지 알기 어렵다.
+
+- 작업을 시작한 컴포넌트가 이미 사라졌을 수 있다.
+- 사용자가 다른 페이지로 이동했을 수 있다.
+- 화면과 무관한 백그라운드 작업일 수 있다.
+- 저장 실패 하나 때문에 전체 화면을 없애는 것은 복구 범위가 지나치게 클 수 있다.
+
+따라서 전역 오류 감지는 주로 로그 보고에 사용하고, 사용자 화면의 복구는 작업을 소유한 컴포넌트가 담당한다.
+
+```text
+저장 실패
+  ├─ 화면: 기존 폼 유지 + 저장 실패 표시
+  └─ 운영: 오류 로그 보고
+```
+
+---
+
 ## stale closure와 같은 뿌리에서 나온다
 
 React의 각 렌더는 자기만의 값과 함수를 가진 하나의 스냅샷이다. 렌더에서 만들어진 함수가 나중에 실행되면 서로 다른 두 문제가 나타날 수 있다.
