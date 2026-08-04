@@ -76,6 +76,57 @@ async function handleSave() {
 
 ---
 
+## stale closure와 같은 뿌리에서 나온다
+
+React의 각 렌더는 자기만의 값과 함수를 가진 하나의 스냅샷이다. 렌더에서 만들어진 함수가 나중에 실행되면 서로 다른 두 문제가 나타날 수 있다.
+
+- 함수가 자신이 태어난 렌더의 옛 값을 읽는다 → stale closure
+- 함수에서 오류가 발생하지만 이미 렌더가 끝났다 → ErrorBoundary가 잡지 못함
+
+```tsx
+function Editor() {
+  const [name, setName] = useState('')
+
+  async function handleSave() {
+    await waitForSomething()
+    await save(name)
+  }
+
+  return <button onClick={handleSave}>저장</button>
+}
+```
+
+`handleSave`가 기다리는 사이 새 렌더가 생겨도, 이미 실행 중인 함수는 자신이 태어난 렌더의 `name`을 계속 읽을 수 있다. 이것이 stale closure 문제다. 그 뒤 `save()`가 실패하면 이번에는 React가 렌더 중이 아니므로 ErrorBoundary가 아니라 `handleSave`의 `try-catch`가 처리해야 한다.
+
+| 구분 | stale closure | ErrorBoundary 범위 |
+| --- | --- | --- |
+| 핵심 질문 | 함수가 어떤 값을 읽는가? | 발생한 오류를 누가 잡는가? |
+| 문제 | 자신이 태어난 렌더의 옛 값을 읽음 | 렌더 밖 오류라 boundary가 잡지 못함 |
+| 해결 | dependency, 함수형 업데이트, `ref`, 구조 변경 | 해당 작업의 `try-catch`와 에러 상태 |
+
+`ref`를 사용하면 비동기 함수가 최신 값을 읽게 만들 수는 있다. 하지만 비동기 오류를 ErrorBoundary가 잡게 만들지는 못한다.
+
+```tsx
+async function handleSave() {
+  try {
+    await save(nameRef.current) // 최신 값 읽기
+  } catch {
+    setSaveError(true)          // 비동기 오류 처리
+  }
+}
+```
+
+즉 최신 값 문제와 오류 처리 문제는 각각 해결해야 한다.
+
+> 나중에 실행되는 함수는 최신 렌더의 값에도, 렌더용 오류 안전망에도 자동으로 연결되지 않는다.
+
+관련 노트:
+
+- [[react-stale-closure/react-stale-closure|React ref / stale closure / write-through 캐시]]
+- [[react-async-request-race-generation-guard|오래된 비동기 응답을 막는 요청 세대 가드]]
+
+---
+
 ## 오류 종류마다 복구 UI가 다르다
 
 | 실패 | 화면 상태 | 담당 안전망 | 일반적인 복구 |

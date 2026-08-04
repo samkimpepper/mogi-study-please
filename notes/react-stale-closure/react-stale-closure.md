@@ -279,7 +279,13 @@ git show pr-162:.../NewProductSheet.tsx \
 
 > 캐시(ref)와 저장소(state)를 가진 시스템에서, 갱신 로직을 **"읽기 타이밍 의존(render-time sync)"**에서 **"쓰기 시점 write-through(setter wrapper)"**로 바꾼 리팩터. 이런 변경의 단골 회귀는 **write-through 레이어를 우회하는 직접 쓰기.** 그래서 리뷰는 "모든 쓰기가 wrapper를 통과하는가"를 **전수로** 확인하는 것 — 한 곳만 빠져도 조용히 깨지니까.
 
-관련 노트: [[React controlled input과 한글 IME 끝글자 잘림]]
+### 관련 노트
+
+- [[React controlled input과 한글 IME 끝글자 잘림]]
+- [[react-error-boundary-vs-async-errors|React ErrorBoundary가 비동기 오류를 잡지 못하는 이유]]
+  - 렌더 후 실행되는 함수가 옛 값을 읽으면 stale closure이고, 그 함수에서 발생한 오류는 ErrorBoundary의 범위 밖이라는 연결을 다룬다.
+- [[react-async-request-race-generation-guard|오래된 비동기 응답을 막는 요청 세대 가드]]
+  - closure를 버그가 아니라 요청 세대별 상태 격리에 의도적으로 사용하는 사례다.
 
 ### 개념 대응표
 
