@@ -167,6 +167,132 @@ microtask에서 실패 처리
 
 Promise가 실패한 시점에는 렌더 호출 스택도, 처음 클릭했을 때의 호출 스택도 끝난 상태다. 따라서 비동기 작업을 시작한 코드가 직접 오류를 처리해야 한다.
 
+#### microstack이 아니라 microtask다
+
+`microstack`이라는 별도 JavaScript 개념이 있는 것은 아니다. 여기서 사용하는 용어는 **microtask**다.
+
+> microtask는 현재 실행 중인 JavaScript의 call stack이 비워진 직후, 다음 일반 이벤트를 처리하기 전에 실행하도록 예약된 작업이다.
+
+JavaScript가 지금 실행 중인 함수들은 call stack에 쌓인다.
+
+```js
+function a() {
+  b()
+}
+
+function b() {
+  console.log('실행')
+}
+
+a()
+```
+
+```text
+call stack
+
+b()
+a()
+전역 코드
+```
+
+현재 실행이 끝난 뒤 처리할 작업은 큐에서 기다린다. 브라우저 실행 흐름을 단순화하면 다음 두 종류가 있다.
+
+| 종류 | 대표적인 예 |
+| --- | --- |
+| task | 클릭 이벤트, `setTimeout`, 네트워크 이벤트 |
+| microtask | `Promise.then`, `await` 이후 코드, `queueMicrotask` |
+
+microtask는 현재 call stack이 비워진 뒤, 다음 task를 시작하기 전에 먼저 처리된다.
+
+```js
+console.log('1')
+
+setTimeout(() => {
+  console.log('2')
+}, 0)
+
+Promise.resolve().then(() => {
+  console.log('3')
+})
+
+console.log('4')
+```
+
+출력 순서는 다음과 같다.
+
+```text
+1
+4
+3
+2
+```
+
+```text
+현재 call stack 실행
+  ├─ 1 출력
+  ├─ setTimeout task 예약
+  ├─ Promise microtask 예약
+  └─ 4 출력
+  ↓
+현재 call stack 종료
+  ↓
+microtask 실행 → 3
+  ↓
+다음 task 실행 → 2
+```
+
+따라서 실행 순서는 크게 다음처럼 기억할 수 있다.
+
+```text
+현재 call stack → microtask queue → 다음 task
+```
+
+#### `await`은 스레드를 붙잡고 기다리지 않는다
+
+```js
+async function load() {
+  console.log('시작')
+  await request()
+  console.log('완료')
+}
+```
+
+`await`을 만나면 함수는 실행을 잠시 양보하고 현재 call stack에서 빠진다. `request()`의 Promise가 완료되면 `await` 아래의 코드를 이어서 실행하는 microtask가 예약된다.
+
+```text
+load 실행
+  ↓
+“시작” 출력
+  ↓
+request Promise 시작
+  ↓
+await에서 load 중단
+  ↓
+현재 call stack 종료
+
+──── Promise 완료 ────
+
+나머지 코드가 microtask로 예약
+  ↓
+microtask 실행
+  ↓
+“완료” 출력
+```
+
+개념적으로는 다음 Promise 연결과 비슷하다.
+
+```js
+request().then(() => {
+  console.log('완료')
+})
+```
+
+microtask가 별도 스레드에서 실행된다는 뜻도 아니다. 일반적으로 브라우저의 JavaScript event loop가 같은 메인 스레드에서 현재 stack과 작업 큐를 조정한다. microtask 차례가 되면 새로운 평범한 call stack을 만들어 해당 함수를 실행한다.
+
+Java의 `CompletableFuture`에서 완료 후 다음 단계를 연결하는 모습과는 비슷하지만, Java의 Future 작업은 executor나 다른 스레드에서 실행될 수 있다는 차이가 있다.
+
+> `await`은 현재 함수를 붙잡고 기다리는 것이 아니다. 함수를 잠시 중단하고, Promise가 완료되면 나머지 코드를 microtask로 이어서 실행한다.
+
 ```tsx
 async function handleSave() {
   try {
