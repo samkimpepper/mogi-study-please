@@ -123,3 +123,4 @@
 
 - [x] Postgres `pg_advisory_xact_lock`, trigger의 동일 키 공유와 같은 트랜잭션의 재진입
 - [x] PostgreSQL 함수 default ACL과 Supabase·MSSQL·Spring의 권한 경계 차이
+- [x] Legacy default ACL 사고 회고에서 실효 권한·전역/스키마 범위·카나리아 검증 배우기

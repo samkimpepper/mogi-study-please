@@ -220,13 +220,16 @@ FROM PUBLIC, anon, authenticated;
 
 Supabase 마이그레이션에서 함수를 생성하는 역할이 `postgres`라면 다음과 같이 미래 기본값을 닫을 수 있다.
 
+PostgreSQL에 내장된 함수의 전역 `PUBLIC EXECUTE` 기본값을 제거할 때는 `IN SCHEMA`를 붙이면 안 된다. 스키마별 default privilege는 전역 기본값에 권한을 추가하는 구조이므로, 전역에서 부여된 권한을 스키마 범위의 `REVOKE`로 뺄 수 없기 때문이다.
+
 ```sql
+-- PostgreSQL 전역 기본값인 PUBLIC EXECUTE 제거
 ALTER DEFAULT PRIVILEGES
 FOR ROLE postgres
-IN SCHEMA public
 REVOKE EXECUTE ON FUNCTIONS
 FROM PUBLIC;
 
+-- legacy Supabase가 public 스키마에서 API 역할에 직접 부여한 권한 제거
 ALTER DEFAULT PRIVILEGES
 FOR ROLE postgres
 IN SCHEMA public
@@ -307,12 +310,11 @@ Supabase 문서에서도 함수 실행을 제한할 때 `PUBLIC`과 제한할 �
 
 Default ACL의 가장 놓치기 쉬운 특징은 **객체를 만드는 역할마다 따로 적용된다**는 점이다.
 
-다음 설정은 `postgres`가 앞으로 만드는 함수에만 적용된다.
+다음 설정은 `postgres`가 앞으로 만드는 함수에만 적용된다. `IN SCHEMA`가 없으므로 현재 데이터베이스에서 `postgres`가 만드는 함수의 전역 기본 `PUBLIC EXECUTE`를 제거한다.
 
 ```sql
 ALTER DEFAULT PRIVILEGES
 FOR ROLE postgres
-IN SCHEMA public
 REVOKE EXECUTE ON FUNCTIONS
 FROM PUBLIC;
 ```
