@@ -122,3 +122,4 @@
 ## 2026-08-05
 
 - [x] Postgres `pg_advisory_xact_lock`, trigger의 동일 키 공유와 같은 트랜잭션의 재진입
+- [x] PostgreSQL 함수 default ACL과 Supabase·MSSQL·Spring의 권한 경계 차이
