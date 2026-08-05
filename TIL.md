@@ -118,3 +118,7 @@
 ## 2026-08-03
 
 - [x] Postgres 권한 이중 방어와 재현 가능한 DB 보안 테스트
+
+## 2026-08-05
+
+- [x] Postgres `pg_advisory_xact_lock`, trigger의 동일 키 공유와 같은 트랜잭션의 재진입
